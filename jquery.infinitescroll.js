@@ -55,6 +55,8 @@
         animate: false,
         pathParse: undefined,
         dataType: 'html',
+        requestType: 'GET',
+        requestBodyBuilder: function () { return null; },
         appendCallback: true,
         bufferPx: 40,
         errorCallback: function () { },
@@ -556,6 +558,8 @@
 						// params
 						url: desturl,
 						dataType: opts.dataType,
+                        type: opts.requestType,
+                        data: opts.requestType === 'GET' ? requestBodyBuilder(),
 						complete: function infscr_ajax_callback(jqXHR, textStatus) {
 							condition = (typeof (jqXHR.isResolved) !== 'undefined') ? (jqXHR.isResolved()) : (textStatus === "success" || textStatus === "notmodified");
 							if (condition) {
@@ -571,7 +575,7 @@
 					instance._debug('Using ' + (method.toUpperCase()) + ' via $.ajax() method');
 					$.ajax({
 						dataType: 'json',
-						type: 'GET',
+                        type: opts.requestType,
 						url: desturl,
 						success: function (data, textStatus, jqXHR) {
 							condition = (typeof (jqXHR.isResolved) !== 'undefined') ? (jqXHR.isResolved()) : (textStatus === "success" || textStatus === "notmodified");
