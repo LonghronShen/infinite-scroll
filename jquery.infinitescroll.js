@@ -559,7 +559,7 @@
 						url: desturl,
 						dataType: opts.dataType,
                         type: opts.requestType,
-                        data: opts.requestType === 'GET' ? requestBodyBuilder(),
+                        data: opts.requestType === 'GET' ? requestBodyBuilder() : null,
 						complete: function infscr_ajax_callback(jqXHR, textStatus) {
 							condition = (typeof (jqXHR.isResolved) !== 'undefined') ? (jqXHR.isResolved()) : (textStatus === "success" || textStatus === "notmodified");
 							if (condition) {
